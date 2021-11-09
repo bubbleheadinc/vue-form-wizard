@@ -50,6 +50,12 @@
       additionalInfo: {
         type: Object,
         default: () => {}
+      },
+      addTab: {
+        type: Function
+      },
+      removeTab: {
+        type: Function
       }
     },
     // inject: ['addTab', 'removeTab'],
@@ -73,13 +79,15 @@
       }
     },
     mounted () {
-      // this.addTab(this)
+      console.log(this.addTab)
+      // this.props.addTab(this)
+      this.$parent.addTab(this)
     },
     destroyed () {
       if (this.$el && this.$el.parentNode) {
         this.$el.parentNode.removeChild(this.$el)
       }
-      // this.removeTab(this)
+      this.$parent.removeTab(this)
     }
   }
 </script>
