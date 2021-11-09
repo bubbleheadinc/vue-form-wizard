@@ -163,12 +163,12 @@
         }
       }
     },
-    provide () {
-      return {
-        addTab: this.addTab,
-        removeTab: this.removeTab
-      }
-    },
+    // provide () {
+    //   return {
+    //     addTab: this.addTab,
+    //     removeTab: this.removeTab
+    //   }
+    // },
     data () {
       return {
         activeTabIndex: 0,
@@ -234,33 +234,33 @@
         this.$emit('on-change', prevIndex, nextIndex)
         this.$emit('update:startIndex', nextIndex)
       },
-      addTab (item) {
-        const index = this.$slots.default.indexOf(item.$vnode)
-        item.tabId = `${item.title.replace(/ /g, '')}${index}`
-        this.tabs.splice(index, 0, item)
-        // if a step is added before the current one, go to it
-        if (index < this.activeTabIndex + 1) {
-          this.maxStep = index
-          this.changeTab(this.activeTabIndex + 1, index)
-        }
-      },
-      removeTab (item) {
-        const tabs = this.tabs
-        const index = tabs.indexOf(item)
-        if (index > -1) {
-          // Go one step back if the current step is removed
-          if (index === this.activeTabIndex) {
-            this.maxStep = this.activeTabIndex - 1
-            this.changeTab(this.activeTabIndex, this.activeTabIndex - 1)
-          }
-          if (index < this.activeTabIndex) {
-            this.maxStep = this.activeTabIndex - 1
-            this.activeTabIndex = this.activeTabIndex - 1
-            this.emitTabChange(this.activeTabIndex + 1, this.activeTabIndex)
-          }
-          tabs.splice(index, 1)
-        }
-      },
+      // addTab (item) {
+      //   const index = this.$slots.default.indexOf(item.$vnode)
+      //   item.tabId = `${item.title.replace(/ /g, '')}${index}`
+      //   this.tabs.splice(index, 0, item)
+      //   // if a step is added before the current one, go to it
+      //   if (index < this.activeTabIndex + 1) {
+      //     this.maxStep = index
+      //     this.changeTab(this.activeTabIndex + 1, index)
+      //   }
+      // },
+      // removeTab (item) {
+      //   const tabs = this.tabs
+      //   const index = tabs.indexOf(item)
+      //   if (index > -1) {
+      //     // Go one step back if the current step is removed
+      //     if (index === this.activeTabIndex) {
+      //       this.maxStep = this.activeTabIndex - 1
+      //       this.changeTab(this.activeTabIndex, this.activeTabIndex - 1)
+      //     }
+      //     if (index < this.activeTabIndex) {
+      //       this.maxStep = this.activeTabIndex - 1
+      //       this.activeTabIndex = this.activeTabIndex - 1
+      //       this.emitTabChange(this.activeTabIndex + 1, this.activeTabIndex)
+      //     }
+      //     tabs.splice(index, 1)
+      //   }
+      // },
       reset () {
         this.maxStep = 0
         this.tabs.forEach((tab) => {
